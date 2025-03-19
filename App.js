@@ -30,20 +30,36 @@ function createPicDiv() {
 }
 
 function displayImage(event){
-
-  const viewPicDiv = document.querySelector('.stories');
-  // const file = event.target.src;
-  const viewPic = document.createElement('div');
-  viewPic.style.height = '5px';
-  viewPic.style.width =  1+'%';
-  viewPic.style.backgroundColor = 'black'
-  viewPicDiv.appendChild(viewPic);
-
-  setTimeout(()=>removeImage(viewPic), 3000, 10);
+  const picUrl = event.target.src;
+  removeImage(picUrl);
 }
 
-function removeImage(width){
-  for(let i = 0; i <= 100; i+=10){
-    width.style.width = i + "%";
+let progressRate = 0;
+function removeImage(picUrl) {
+  const viewPicDiv = document.querySelector('.stories');
+  const viewPic = document.createElement('div');
+  const pic = document.createElement('img');
+  pic.src = picUrl;
+  pic.className = 'viewpic';
+  viewPic.className = 'bar';
+
+  viewPicDiv.appendChild(viewPic);
+  viewPicDiv.appendChild(pic);
+
+  let width = 0;
+  const duration = 3000; // 3 seconds
+  const intervalTime = 10; // Update every 10ms
+  const increment = (100 / (duration / intervalTime)); // Calculate increment per interval
+
+  const intervalID = setInterval(progressBar, intervalTime);
+
+  function progressBar() {
+
+    width += increment;
+    if (width >= 100) {
+      clearInterval(intervalID);
+      viewPicDiv.innerHTML = '';
+    }
+    viewPic.style.width = width + '%';
   }
 }
