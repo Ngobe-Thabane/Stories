@@ -1,0 +1,27 @@
+
+.storie-upload{
+  border: 1px solid black;
+  padding: 1em;
+  border-radius: .5em;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.btn-storie{
+  font-size: 2em;
+  border: 1px solid gray;
+  background: transparent;
+  border-radius: 50%;
+  color: gray;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+}
+
+.pic{
+  width: 50px;
+  height: 50px;
+  border: 1px solid gray;
+  border-radius: 50%;
+}
