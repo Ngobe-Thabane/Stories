@@ -7,7 +7,9 @@ document.getElementById('btn').addEventListener('click', () => {
 document.getElementById('file-upload').addEventListener('change', (event) => {
 
   const file = event.target.files[0];
-
+  const numberOfStories = document.querySelector('.storie-bars');
+  const bar = document.createElement('div');
+  bar.className = 'bar-log';
   if (file) {
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -16,6 +18,7 @@ document.getElementById('file-upload').addEventListener('change', (event) => {
       createPicDiv();
     };
     reader.readAsDataURL(file);
+    numberOfStories.appendChild(bar);
   }
 });
 
@@ -36,15 +39,13 @@ function displayImage(event){
 
 let progressRate = 0;
 function removeImage(picUrl) {
-  const viewPicDiv = document.querySelector('.stories');
-  const viewPic = document.createElement('div');
+  const viewPicDiv = document.querySelector('.bar-log');
+  const storieCard = document.querySelector('.storiecard');
   const pic = document.createElement('img');
   pic.src = picUrl;
   pic.className = 'view-image';
-  viewPic.className = 'bar';
-
-  viewPicDiv.appendChild(viewPic);
-  viewPicDiv.appendChild(pic);
+  viewPicDiv.classList.add('bar');
+  storieCard.appendChild(pic);
 
   let width = 0;
   const duration = 3000; // 3 seconds
@@ -60,6 +61,6 @@ function removeImage(picUrl) {
       clearInterval(intervalID);
       viewPicDiv.innerHTML = '';
     }
-    viewPic.style.width = width + '%';
+    viewPicDiv.style.width = width + '%';
   }
 }
