@@ -40,7 +40,7 @@ function removeImage(picUrl) {
   const viewPic = document.createElement('div');
   const pic = document.createElement('img');
   pic.src = picUrl;
-  pic.className = 'viewpic';
+  pic.className = 'view-image';
   viewPic.className = 'bar';
 
   viewPicDiv.appendChild(viewPic);
