@@ -1,6 +1,10 @@
+import Story from "./Story.js";
+import InstaStoryGenerator from "./instaStoryGenerator.js";
+
 
 export default class ImageUploader{
 
+  #stories = new InstaStoryGenerator();
   constructor(){}
 
   // to handle image upload
@@ -18,8 +22,9 @@ export default class ImageUploader{
       const reader = new FileReader();
       
       reader.onloadend = ()=> {
-          const base64Image = reader.result;
-          this.#storeImageInLocalStorage(base64Image);
+           const base64Image = reader.result;  
+           const story = new Story(base64Image);
+           this.#stories.storeStory(JSON.stringify(story));
       };
       
       reader.onerror = (error) =>{
@@ -27,21 +32,9 @@ export default class ImageUploader{
       };
       
       reader.readAsDataURL(file); // This converts the image file to a base64 string
-  }
-  
-  // to store base64 image in local storage
-  #storeImageInLocalStorage(base64Image) {
 
-      if (typeof(Storage) !== "undefined") {
-          localStorage.setItem('uploadedImage', base64Image);
-      }
   }
   
-  // to retrieve the image from local storage
-  getImageFromLocalStorage() {
-      const storedImage = localStorage.getItem('uploadedImage');
-      return storedImage; 
-  }
 }
 
 

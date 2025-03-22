@@ -25,13 +25,19 @@ body{
   background: var(--navy-blue);
   height: 97vh;
 }
+.storie-list{
+  display: flex;
+  flex-direction: column;
+  gap: .4em;
+}
 
 .bar{
   width: 100%;
   background: var(--persian-blue);
   height: 4px;
   justify-self: start;
-  border-right: 2px solid var(--skt-blue);
+  margin: .2em .1em;
+  border-radius: .3em;
 }
 
 .stories{
@@ -76,11 +82,9 @@ body{
   display: flex;
 }
 
-.bar-log{
-  display: flex;
-  justify-self: start;
-  width: 100%;
+
+.progress{
   height: 4px;
-  background: var(--navy-blue);
-  border-right: 2px solid var(--persian-blue);
+  border-radius: .3em;
+  background-color: var(--skt-blue);
 }
