@@ -27,10 +27,11 @@ body{
 }
 
 .bar{
+  width: 100%;
   background: var(--persian-blue);
   height: 4px;
   justify-self: start;
-  border-right: 1px solid var(--persian-blue);
+  border-right: 2px solid var(--skt-blue);
 }
 
 .stories{
