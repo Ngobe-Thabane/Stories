@@ -40,6 +40,8 @@ body {
   gap: .5em;
   border-radius: .5em;
   cursor: pointer;
+  border-bottom: 1px solid gray;
+  box-shadow: .5px 1px #A25AFF;
 }
 
 .action-elements {

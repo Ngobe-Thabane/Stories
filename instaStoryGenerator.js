@@ -10,15 +10,13 @@ export default class InstaStoryGenerator{
     const isStoriesAvailable = localStorage.getItem('stories');
     this.#stories = isStoriesAvailable ? JSON.parse(isStoriesAvailable) : [];
     this.#displayStorieThumbnails();
-
   }
   
   addStoryToLocalStorage(story){
 
     this.#stories.push(story);
     localStorage.setItem('stories', JSON.stringify(this.#stories));
-    this.#displayStorieThumbnails();
-  
+    this.#displayStorieThumbnails();  
   }
 
   #displayStorieThumbnails(){
@@ -59,23 +57,23 @@ export default class InstaStoryGenerator{
     storieCard.style.backgroundImage = `url(${story.storyContent})`;
 
     this.#updateProgressBar(id.split('-')[0],duration);
-    setTimeout(()=> this.#removeStory(story), duration);
+    setTimeout(()=> this.#nextStory(story), duration);
   }
 
   #countStories(){
 
+    const progressBarContainer = document.querySelector('.storie-bars');
+    progressBarContainer.innerHTML = '';
+
     this.#stories.forEach((story)=>{
 
       const currentStory = JSON.parse(story);
-      const progressBarContainer = document.querySelector('.storie-bars');
       const progressBar = document.createElement('div');
 
       progressBar.className = 'bar';
       progressBar.id = currentStory.id.split('-')[0];
       progressBarContainer.appendChild(progressBar);
-
-    })
-  
+    })  
   }
 
   #updateProgressBar(id,duration){
@@ -85,7 +83,7 @@ export default class InstaStoryGenerator{
     const storyBar = document.getElementById(id);
     const progress = this.#progress(storyBar);
     
-    const intarvalTime = 10; //update every 3 seconds;
+    const intarvalTime = 10; 
     const incrementPerIntarval = (100/(duration/intarvalTime));
     const intarvalID = setInterval(progressBar, intarvalTime);
     
@@ -106,13 +104,13 @@ export default class InstaStoryGenerator{
     return progresBar;
   }
   
-  #removeStory(PrevStorystory) {
+  #nextStory(PrevStorystory) {
 
-    let nextItem = this.#stories.findIndex((story)=>{
+    let currentStoryIndex = this.#stories.findIndex((story)=>{
       return JSON.parse(story).id === PrevStorystory.id;
     });
 
-    const nextStory = this.#stories[nextItem+1];
+    const nextStory = this.#stories[currentStoryIndex+1];
 
     if(nextStory !== undefined){
       this.#displayStoryForDuration(JSON.parse(nextStory).id);

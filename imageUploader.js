@@ -7,7 +7,6 @@ export default class ImageUploader{
   #stories = new InstaStoryGenerator();
   constructor(){}
 
-  // to handle image upload
   uploadImage(inputElement) {
   
       // Check if a file is selected
@@ -17,7 +16,6 @@ export default class ImageUploader{
       }
   }
   
-  // to convert image to base64 
   #convertImageToBase64(file) {
       const reader = new FileReader();
       
@@ -32,9 +30,7 @@ export default class ImageUploader{
       };
       
       reader.readAsDataURL(file); // This converts the image file to a base64 string
-
   }
-  
 }
 
 
