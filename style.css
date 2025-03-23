@@ -1,90 +1,70 @@
-:root{
-  --federal-blue : #0e0e52;
-  --persian-blue : #192bc2;
-  --navy-blue : #150578;
-  --celestial-blue: #449DD1;
-  --skt-blue: #78C0E0;
+body {
+  background: rgba(128, 128, 128, 0.219);
 }
 
-body{
-  background-color: var(--federal-blue);
-  padding: 0;
-  margin: 0;
+.storie-card {
+  display: none;
+  height: 85vh;
+  width: 70vw;
+  margin: 0em auto;
+  border-radius: 1em;
+  background-color: rgb(245, 245, 245);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.all-info{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.storie-upload{
-  display: flex;
-  flex-direction: column;
-  gap: .5em;
-  padding: .5em;
-  background: var(--navy-blue);
-  height: 97vh;
-}
 .storie-list{
   display: flex;
-  flex-direction: column;
   gap: .4em;
 }
 
-.bar{
-  width: 100%;
-  background: var(--persian-blue);
-  height: 4px;
-  justify-self: start;
-  margin: .2em .1em;
-  border-radius: .3em;
-}
-
-.stories{
-  flex: 1;
-  justify-items: center;
-
-}
-.btn{
-  background: var(--persian-blue);
-  border: 1px solid var(--celestial-blue);
-  color: var(--skt-blue);
-  border-radius: 100%;
-  font-size: 1.5em;
-  width: 50px;
-  height: 50px;
-}
-
-.card{
-  width: fit-content;
-  height: fit-content;
-  margin: 2em;
-}
-
-.pic{
-  width: 50px;
-  height: 50px;
-  border: 2px solid var(--persian-blue);
-  border-radius: 100%;
-}
-.view-image{
-  border-radius: .2em;
-  box-shadow: 0 1.5px 5px 0 var(--navy-blue), 0 1.5px 5px 0 var(--skt-blue);
-  max-width: 1080px;
-  max-height: 1090px;
-  margin-top: 2em;
-}
-
-.storie-bars{
-  width: 100%;
-  justify-self: start;
-  min-height: 2px;
+.storie-bars {
   display: flex;
+  padding: 1em .5em;
+  background: transparent;
 }
 
-
-.progress{
+.bar {
   height: 4px;
-  border-radius: .3em;
-  background-color: var(--skt-blue);
+  width: 100%;
+  background: gray;
+  margin: 0em .05em;
+  border-radius: .2em;
+}
+
+.story-thumbnail {
+  margin: 1em .2em;
+  padding: .2em;
+  display: flex;
+  gap: .5em;
+  border-radius: .5em;
+  cursor: pointer;
+}
+
+.action-elements {
+  border-radius: 100%;
+  border: 2px solid #0095F6;
+}
+
+.upload-btn {
+  width: 50px;
+  height: 50px;
+  background: #A25AFF;
+  color: white;
+  font-size: 2em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pic {
+  width: 50px;
+  height: 50px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(135deg, #9B4DFF, #F58529);
+  border-radius: .2em;
 }

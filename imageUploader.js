@@ -22,9 +22,9 @@ export default class ImageUploader{
       const reader = new FileReader();
       
       reader.onloadend = ()=> {
-           const base64Image = reader.result;  
-           const story = new Story(base64Image);
-           this.#stories.storeStory(JSON.stringify(story));
+        const base64Image = reader.result;  
+        const story = new Story(base64Image);
+        this.#stories.addStoryToLocalStorage(JSON.stringify(story));
       };
       
       reader.onerror = (error) =>{

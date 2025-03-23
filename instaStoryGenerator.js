@@ -1,7 +1,7 @@
 
 
 export default class InstaStoryGenerator{
-  
+
   #stories;
   #storieListDiv = document.querySelector('.storie-list');
   
@@ -12,18 +12,17 @@ export default class InstaStoryGenerator{
     this.#displayStorieThumbnails();
 
   }
+  
+  addStoryToLocalStorage(story){
 
-  storeStory(story){
     this.#stories.push(story);
-    this.#addStoryToLocalStorage();
-  }
-
-  #addStoryToLocalStorage(){
     localStorage.setItem('stories', JSON.stringify(this.#stories));
     this.#displayStorieThumbnails();
+  
   }
 
   #displayStorieThumbnails(){
+
     this.#storieListDiv.innerHTML = '';
     this.#stories.forEach((story)=>{
       const currentStory = JSON.parse(story);
@@ -36,7 +35,7 @@ export default class InstaStoryGenerator{
   #createStoryThumbnail(story) {
   
     const storyThumbnail = document.createElement('img');
-    storyThumbnail.className = 'pic';
+    storyThumbnail.className = 'pic action-elements';
     storyThumbnail.src = story.storyContent;
     storyThumbnail.id = story.id;
   
@@ -44,7 +43,7 @@ export default class InstaStoryGenerator{
     return storyThumbnail;
   }
 
-  getStory(id){
+  #getStory(id){
 
     return this.#stories.filter((story) => {
       return JSON.parse(story).id == id;
@@ -53,16 +52,14 @@ export default class InstaStoryGenerator{
 
   #displayStoryForDuration(id, duration = 3000) {
 
-    const story = JSON.parse(this.getStory(id));
+    const story = JSON.parse(this.#getStory(id));
     const storieCard = document.querySelector('.storie-card');
-    const storyContent = document.createElement('img');
 
-    storyContent.src = story.storyContent;
-    storyContent.className = 'view-image';
-  
-    storieCard.appendChild(storyContent);
+    storieCard.style.display = 'block';
+    storieCard.style.backgroundImage = `url(${story.storyContent})`;
+
     this.#updateProgressBar(id.split('-')[0],duration);
-    setTimeout(removeStory, duration);
+    setTimeout(()=> this.#removeStory(story), duration);
   }
 
   #countStories(){
@@ -100,19 +97,30 @@ export default class InstaStoryGenerator{
   
   #progress(storyBar){
 
-    const bar = document.createElement('div');
+    const progresBar = document.createElement('div');
 
-    bar.className = 'progress';
+    progresBar.className = 'progress-bar';
     storyBar.innerHTML = '';
-    storyBar.appendChild(bar);
+    storyBar.appendChild(progresBar);
 
-    return bar;
+    return progresBar;
+  }
+  
+  #removeStory(PrevStorystory) {
+
+    let nextItem = this.#stories.findIndex((story)=>{
+      return JSON.parse(story).id === PrevStorystory.id;
+    });
+
+    const nextStory = this.#stories[nextItem+1];
+
+    if(nextStory !== undefined){
+      this.#displayStoryForDuration(JSON.parse(nextStory).id);
+    }else{
+      const storieCard = document.querySelector('.storie-card');
+      storieCard.style.display = 'none';
+    }
   }
 }
 
 
-
-function removeStory() {
-  const storieCard = document.querySelector('.storie-card');
-  storieCard.innerHTML = '';
-}
