@@ -1,3 +1,4 @@
+import InstaStoryGenerator from "./instaStoryGenerator.js";
 import Stories from "./Stories.js";
 import Story from "./Story.js";
 
@@ -5,32 +6,70 @@ import Story from "./Story.js";
 export default class ImageUploader{
 
   #stories = new Stories();
-  constructor(){}
-
-  uploadImage(inputElement) {
-  
-      // Check if a file is selected
-      if (inputElement.files && inputElement.files[0]) {
-          const file = inputElement.files[0];
-          this.#convertImageToBase64(file);
-      }
+  #filePreview = document.getElementById('file-preview');
+  #story;
+  constructor(){
+    this.#story = new Story();
   }
-  
-  #convertImageToBase64(file) {
-      const reader = new FileReader();
-      
-      reader.onloadend = ()=> {
-        const base64Image = reader.result;  
-        const story = new Story();
-        story.addStoryContent(base64Image);
-        this.#stories.addStoryToLocalStorage(story.getStory());
-      };
-      
-      reader.onerror = (error) =>{
-          console.error("Error while reading the file:", error);
-      };
-      
-      reader.readAsDataURL(file); // This converts the image file to a base64 string
+
+  // Function to preview files
+  handleFiles(files) {
+    for (let i = 0; i < files.length; i++) {
+
+        const file = files[i];
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          this.#story.addStoryContent({imageUrl : e.target.result, name: file.name});
+          this.showPreview();
+        };
+        
+        reader.readAsDataURL(file);
+      }
+    }
+
+  showPreview(){
+
+    this.#filePreview.innerHTML = '';
+
+    this.#story.getStory().storyContent.forEach((story)=>{
+      this.createImagePreview(story);
+    })
+  }    
+
+  previewStory(){
+    new InstaStoryGenerator(this.story.getStory());
+  }
+
+  saveStory(){
+    this.#filePreview.innerHTML = '';
+    document.querySelector('.upload-container').style.display = 'none';
+    document.querySelector('.upload-btn').style.display = 'block';
+    this.#stories.addStoryToLocalStorage(this.#story.getStory());
+  }
+
+  createImagePreview(image){
+    
+    const previewImageContainer = document.createElement('div');
+    const imgElement = document.createElement('img');
+    const fileName = document.createElement('span');
+    const deleteButton = document.createElement('button');
+    
+    imgElement.src = image.imageUrl;
+    fileName.textContent = image.name;
+
+    imgElement.classList.add('preview-image');
+    fileName.classList.add('file-name');
+    
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-btn');
+
+    previewImageContainer.appendChild(imgElement);
+    previewImageContainer.appendChild(fileName);
+    previewImageContainer.appendChild(deleteButton);
+
+    this.#filePreview.appendChild(previewImageContainer);
+    
   }
 }
 

@@ -1,0 +1,109 @@
+
+
+.upload-container h1{
+    color: #fcb045;
+    text-align: center;
+}
+
+.upload-box {
+
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    padding: 30px;
+    cursor: pointer;
+    transition: border 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.upload-box:hover {
+    border: 2px dashed #007bff;
+}
+
+.upload-text {
+    color: #777;
+    font-size: 16px;
+}
+
+.file-preview {
+    list-style-type: none;
+    margin-top: 20px;
+    padding: 0;
+    text-align: left;
+}
+
+.file-preview div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.preview-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.file-name {
+    flex: 1;
+    color: #555;
+    font-size: 14px;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #e60000;
+}
+
+
+/* Instagram Style Button */
+.instagram-button {
+    background: linear-gradient(45deg, #fd1d1d9d, #fcb045b6); /* Gradient from red to orange */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: .8em;
+    font-weight: bold;
+    border-radius: 30px; /* Rounded corners */
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    text-transform: uppercase;
+}
+
+.instagram-button:hover {
+    background: linear-gradient(45deg, #fcb045, #fd1d1d); /* Invert the gradient on hover */
+    transform: scale(1.05); /* Slightly grow the button */
+}
+
+.instagram-button:active {
+    transform: scale(0.98); /* Slight shrink when the button is pressed */
+}
+
+.instagram-button:focus {
+    outline: none; /* Remove outline when focused */
+}
+
+.story-actions{
+    display: flex;
+    justify-content: space-between;
+}
+

@@ -6,8 +6,10 @@ export default class Stories{
   #storieListDiv = document.querySelector('.storie-list');
 
   constructor(){
+
     const isStoriesAvailable = localStorage.getItem('stories');
     this.#stories = isStoriesAvailable ? JSON.parse(isStoriesAvailable) : [];
+    this.#clearUploadPage();
     this.#displayStorieThumbnails();
   }
   
@@ -18,6 +20,14 @@ export default class Stories{
     this.#displayStorieThumbnails(); 
   }
 
+  #clearUploadPage(){
+
+    if(this.#stories.length >= 1){
+      document.querySelector('.upload-container').style.display = 'none';
+      document.querySelector('.upload-btn').style.display = 'block';
+    }
+  }
+  
   #displayStorieThumbnails(){
 
     this.#storieListDiv.innerHTML = '';
@@ -37,7 +47,7 @@ export default class Stories{
   
     const storyThumbnail = document.createElement('img');
     storyThumbnail.className = 'pic action-elements';
-    storyThumbnail.src = story.storyContent;
+    storyThumbnail.src = story.storyContent[0].imageUrl;
     storyThumbnail.id = story.id;
   
     storyThumbnail.addEventListener('click', (event) => {

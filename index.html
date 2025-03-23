@@ -3,26 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./story.css">
   <link rel="stylesheet" href="style.css">
   <title>Instagram Storie</title>
 </head>
 <body class="story-background">
-  <section >
-    <section class="story-thumbnail">
 
-      <div class="upload-container">
-        <button class="upload-btn action-elements" id="btn">+</button>
-        <input type="file" style="display: none;" id="file-upload">
-      </div>
+  <article class="story-thumbnail">
+    <button class="action-elements upload-btn" id="add-more-btn">+</button>
+    <section class="storie-list">
+    </section>
+  </article>
 
-      <section class="storie-list">
-      </section>
+  <section class="story-container">
+
+    <section class="">
+     <div class="upload-container">
+        <h1>Share Your Moment, Inspire the World!</h1>
+        <div class="upload-box" id="upload-box">
+            <span class="upload-text">Drag & Drop your files here or click to select</span>
+            <input type="file" id="file-input" multiple style="display: none;">
+        </div>
+        <div id="file-preview" class="file-preview"></div>
+        <div class="story-actions">
+            <button class="instagram-button" id="create-story">Create Story</button>
+            <button class="instagram-button preview" id="preview">Preview Story</button>
+        </div>
+    </div> 
+
     </section>
     
     <section class="storie-card">
       <div class="storie-bars">
       </div>
     </section>
+
   </section>
   <script type="module" src="./App.js"></script>
 </body>
