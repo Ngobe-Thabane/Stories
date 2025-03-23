@@ -1,10 +1,10 @@
+import Stories from "./Stories.js";
 import Story from "./Story.js";
-import InstaStoryGenerator from "./instaStoryGenerator.js";
 
 
 export default class ImageUploader{
 
-  #stories = new InstaStoryGenerator();
+  #stories = new Stories();
   constructor(){}
 
   uploadImage(inputElement) {
@@ -21,8 +21,9 @@ export default class ImageUploader{
       
       reader.onloadend = ()=> {
         const base64Image = reader.result;  
-        const story = new Story(base64Image);
-        this.#stories.addStoryToLocalStorage(JSON.stringify(story));
+        const story = new Story();
+        story.addStoryContent(base64Image);
+        this.#stories.addStoryToLocalStorage(story.getStory());
       };
       
       reader.onerror = (error) =>{

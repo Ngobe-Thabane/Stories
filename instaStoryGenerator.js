@@ -3,61 +3,22 @@
 export default class InstaStoryGenerator{
 
   #stories;
-  #storieListDiv = document.querySelector('.storie-list');
   
-  constructor(){
-
-    const isStoriesAvailable = localStorage.getItem('stories');
-    this.#stories = isStoriesAvailable ? JSON.parse(isStoriesAvailable) : [];
-    this.#displayStorieThumbnails();
-  }
-  
-  addStoryToLocalStorage(story){
-
-    this.#stories.push(story);
-    localStorage.setItem('stories', JSON.stringify(this.#stories));
-    this.#displayStorieThumbnails();  
-  }
-
-  #displayStorieThumbnails(){
-
-    this.#storieListDiv.innerHTML = '';
-    this.#stories.forEach((story)=>{
-      const currentStory = JSON.parse(story);
-      this.#storieListDiv.appendChild(this.#createStoryThumbnail(currentStory));
-    });
-
+  constructor(story){
+    this.#stories = story.storyContent;
     this.#countStories();
+    this.#displayStoryForDuration(0, this.#stories[0]);
   }
 
-  #createStoryThumbnail(story) {
-  
-    const storyThumbnail = document.createElement('img');
-    storyThumbnail.className = 'pic action-elements';
-    storyThumbnail.src = story.storyContent;
-    storyThumbnail.id = story.id;
-  
-    storyThumbnail.addEventListener('click', (event) => {this.#displayStoryForDuration(event.target.id)});
-    return storyThumbnail;
-  }
-
-  #getStory(id){
-
-    return this.#stories.filter((story) => {
-      return JSON.parse(story).id == id;
-     })[0];
-  }
-
-  #displayStoryForDuration(id, duration = 3000) {
-
-    const story = JSON.parse(this.#getStory(id));
+  #displayStoryForDuration(storyIndex, story, duration = 3000) {
+    
     const storieCard = document.querySelector('.storie-card');
 
     storieCard.style.display = 'block';
-    storieCard.style.backgroundImage = `url(${story.storyContent})`;
+    storieCard.style.backgroundImage = `url(${story})`;
 
-    this.#updateProgressBar(id.split('-')[0],duration);
-    setTimeout(()=> this.#nextStory(story), duration);
+    this.#updateProgressBar(storyIndex,duration);
+    setTimeout(()=> this.#nextStory(storyIndex+1), duration);
   }
 
   #countStories(){
@@ -65,14 +26,13 @@ export default class InstaStoryGenerator{
     const progressBarContainer = document.querySelector('.storie-bars');
     progressBarContainer.innerHTML = '';
 
-    this.#stories.forEach((story)=>{
+    this.#stories.forEach((story, index)=>{
 
-      const currentStory = JSON.parse(story);
       const progressBar = document.createElement('div');
-
       progressBar.className = 'bar';
-      progressBar.id = currentStory.id.split('-')[0];
+      progressBar.id = index;
       progressBarContainer.appendChild(progressBar);
+
     })  
   }
 
@@ -104,17 +64,12 @@ export default class InstaStoryGenerator{
     return progresBar;
   }
   
-  #nextStory(PrevStorystory) {
+  #nextStory(storyIndex) {
 
-    let currentStoryIndex = this.#stories.findIndex((story)=>{
-      return JSON.parse(story).id === PrevStorystory.id;
-    });
-
-    const nextStory = this.#stories[currentStoryIndex+1];
-
-    if(nextStory !== undefined){
-      this.#displayStoryForDuration(JSON.parse(nextStory).id);
-    }else{
+    if(storyIndex < this.#stories.length){
+      this.#displayStoryForDuration(storyIndex, this.#stories[storyIndex]);
+    }
+    else{
       const storieCard = document.querySelector('.storie-card');
       storieCard.style.display = 'none';
     }
