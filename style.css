@@ -5,7 +5,7 @@ body {
 .storie-card {
   display: none;
   height: 85vh;
-  width: 70vw;
+  width: 35vw;
   margin: 0em auto;
   border-radius: 1em;
   background-color: rgb(245, 245, 245);
