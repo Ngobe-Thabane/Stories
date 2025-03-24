@@ -38,7 +38,7 @@ export default class ImageUploader{
   }    
 
   previewStory(){
-    new InstaStoryGenerator(this.story.getStory());
+    new InstaStoryGenerator(this.#story.getStory());
   }
 
   saveStory(){
@@ -48,21 +48,27 @@ export default class ImageUploader{
     this.#stories.addStoryToLocalStorage(this.#story.getStory());
   }
 
-  createImagePreview(image){
+  createImagePreview(story){
     
     const previewImageContainer = document.createElement('div');
     const imgElement = document.createElement('img');
     const fileName = document.createElement('span');
     const deleteButton = document.createElement('button');
     
-    imgElement.src = image.imageUrl;
-    fileName.textContent = image.name;
+    imgElement.src = story.imageUrl;
+    fileName.textContent = story.name;
 
     imgElement.classList.add('preview-image');
     fileName.classList.add('file-name');
     
     deleteButton.textContent = 'Delete';
     deleteButton.classList.add('delete-btn');
+    deleteButton.id = story.id;
+
+    deleteButton.addEventListener('click', (event)=>{
+      this.#story.removeStory(event.target.id);
+      this.showPreview();
+    })
 
     previewImageContainer.appendChild(imgElement);
     previewImageContainer.appendChild(fileName);

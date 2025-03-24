@@ -6,7 +6,7 @@ export default class Story{
   #expirationTime;
   
   constructor(){
-    this.id = `${this.#timestamp}-${Math.random().toString(36).substring(2, 10)}`;
+    this.id = this.#createId();
   }
 
   getStory(){
@@ -15,8 +15,20 @@ export default class Story{
       id: this.id
     }
   }
-  
+
   addStoryContent(content){
+    content.id = this.#createId();
     this.#storyContent.push(content);
+  }
+  
+  removeStory(id){
+    const content = this.#storyContent.findIndex((content)=>{ 
+      return content.id === id;
+    })
+    this.#storyContent.splice(content, 1);
+  }
+
+  #createId(){
+    return `${this.#timestamp}-${Math.random().toString(36).substring(2, 10)}`;
   }
 }
