@@ -1,27 +1,32 @@
+import Stories from "./Stories.js";
 
 
 export default class InstaStoryGenerator{
 
-  #stories;
-  
-  constructor(story){
-    this.#stories = story.storyContent;
-    this.#countStories();
-    this.#displayStoryForDuration(0, this.#stories[0]);
-  }
+  static #storyList;
+  static #preview = false;
 
-  #displayStoryForDuration(storyIndex, story, duration = 3000) {
+  constructor(){}
+  
+  static displayStory(story, preview){
+    InstaStoryGenerator.#storyList = story.storyContent;
+    InstaStoryGenerator.#preview = preview;
+    InstaStoryGenerator.#countStories();
+    InstaStoryGenerator.#displayStoryForDuration(0, InstaStoryGenerator.#storyList[0]);  
+  }
+  
+  static #displayStoryForDuration(storyIndex, story, duration = 3000) {
     
     const storieCard = document.querySelector('.storie-card');
-
+    
     storieCard.style.display = 'block';
     storieCard.style.backgroundImage = `url(${story.imageUrl})`;
 
-    this.#updateProgressBar(storyIndex,duration);
-    setTimeout(()=> this.#nextStory(storyIndex+1), duration);
+    InstaStoryGenerator.#updateProgressBar(storyIndex,duration);
+    setTimeout(()=> InstaStoryGenerator.#nextStory(storyIndex+1), duration);
   }
   
-  #updateProgressBar(id,duration){
+  static #updateProgressBar(id,duration){
     
     let width = 0;
     
@@ -39,12 +44,12 @@ export default class InstaStoryGenerator{
   }
   
   
-  #countStories(){
+  static #countStories(){
 
     const progressBarContainer = document.querySelector('.storie-bars');
     progressBarContainer.innerHTML = '';
 
-    this.#stories.forEach((story, index)=>{
+    InstaStoryGenerator.#storyList.forEach((story, index)=>{
 
       const progressBar = document.createElement('div');
       progressBar.className = 'bar';
@@ -54,7 +59,7 @@ export default class InstaStoryGenerator{
     })  
   }
   
-  #progress(storyBar){
+  static #progress(storyBar){
 
     const progresBar = document.createElement('div');
 
@@ -65,14 +70,15 @@ export default class InstaStoryGenerator{
     return progresBar;
   }
   
-  #nextStory(storyIndex) {
+  static #nextStory(storyIndex) {
 
-    if(storyIndex < this.#stories.length){
-      this.#displayStoryForDuration(storyIndex, this.#stories[storyIndex]);
+    if(storyIndex < InstaStoryGenerator.#storyList.length){
+      InstaStoryGenerator.#displayStoryForDuration(storyIndex, InstaStoryGenerator.#storyList[storyIndex]);
     }
     else{
       const storieCard = document.querySelector('.storie-card');
       storieCard.style.display = 'none';
+      if(!InstaStoryGenerator.#preview) Stories._nextStoryAvaiable();
     }
   }
 }

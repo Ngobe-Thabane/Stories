@@ -38,7 +38,7 @@ export default class ImageUploader{
   }    
 
   previewStory(){
-    new InstaStoryGenerator(this.#story.getStory());
+    InstaStoryGenerator.displayStory(this.#story.getStory(), true);
   }
 
   saveStory(){
