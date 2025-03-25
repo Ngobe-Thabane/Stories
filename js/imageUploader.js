@@ -25,10 +25,10 @@ export default class ImageUploader{
         };
         
         reader.readAsDataURL(file);
-      }
     }
+  }
 
-  showPreview(){
+showPreview(){
 
     this.#filePreview.innerHTML = '';
     const storyActions = document.querySelector('.story-actions');
