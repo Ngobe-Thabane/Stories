@@ -57,7 +57,7 @@ export default class Stories{
       Stories._currentStory = 0;
     }
 
-    InstaStoryGenerator.displayStory(Stories.#stories[Stories._currentStory], true);
+    InstaStoryGenerator.displayStory(Stories.#stories[Stories._currentStory], false);
   }
 
   static prev(){
@@ -65,7 +65,7 @@ export default class Stories{
     if(Stories._currentStory < 0){
       Stories._currentStory = 0;
     }
-    InstaStoryGenerator.displayStory(Stories.#stories[Stories._currentStory], true);
+    InstaStoryGenerator.displayStory(Stories.#stories[Stories._currentStory], false);
   }
 
   static _nextStoryAvaiable(){

@@ -11,9 +11,7 @@ export default class InstaStoryGenerator{
   static displayStory(story, preview){
 
     const storieCard = document.querySelector('.storie-card');
-    storieCard.innerHTML = ''
-    storieCard.style.backgroundImage = 'none';
-
+    storieCard.style.display = 'none';
     InstaStoryGenerator.#storyList = story.storyContent;
     InstaStoryGenerator.#preview = preview;
     InstaStoryGenerator.#countStories();
@@ -85,11 +83,13 @@ export default class InstaStoryGenerator{
       InstaStoryGenerator.#displayStoryForDuration(storyIndex, InstaStoryGenerator.#storyList[storyIndex]);
     }
     else{
-      if(!InstaStoryGenerator.#preview) Stories._nextStoryAvaiable();
+
       if(InstaStoryGenerator.#preview){
+
+        const storyActions = document.querySelector('.next-btn');
         const storieCard = document.querySelector('.storie-card');
-        storieCard.innerHTML = ""
-        storieCard.style.backgroundImage = 'none';
+        storieCard.style.display = 'none';
+        storyActions.style.display = 'none';
       }
     }
   }

@@ -52,6 +52,7 @@ uploadBox.addEventListener('drop', (event) => {
 addMoreButton.addEventListener('click', ()=>{
     fileInput.click();
     previewContainer.style.display = 'block';
+    document.querySelector('.storie-card').style.display = 'none';
 })
 
 uploadBox.addEventListener('click', () => {

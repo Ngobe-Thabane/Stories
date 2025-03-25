@@ -58,7 +58,7 @@ export default class ImageUploader{
     const deleteButton = document.createElement('button');
     
     imgElement.src = story.imageUrl;
-    fileName.textContent = story.name;
+    fileName.textContent = story.name.split('.')[0];
 
     imgElement.classList.add('preview-image');
     fileName.classList.add('file-name');
