@@ -86,6 +86,11 @@ export default class InstaStoryGenerator{
     }
     else{
       if(!InstaStoryGenerator.#preview) Stories._nextStoryAvaiable();
+      if(InstaStoryGenerator.#preview){
+        const storieCard = document.querySelector('.storie-card');
+        storieCard.innerHTML = ""
+        storieCard.style.backgroundImage = 'none';
+      }
     }
   }
 }

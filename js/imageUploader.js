@@ -31,6 +31,8 @@ export default class ImageUploader{
   showPreview(){
 
     this.#filePreview.innerHTML = '';
+    const storyActions = document.querySelector('.story-actions');
+    storyActions.style.display = this.#story.getStory().storyContent.length >= 1 ? 'flex' : 'none';
 
     this.#story.getStory().storyContent.forEach((story)=>{
       this.createImagePreview(story);
