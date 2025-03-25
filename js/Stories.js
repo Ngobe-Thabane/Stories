@@ -50,6 +50,24 @@ export default class Stories{
     })
   }
 
+  static next(){
+    Stories._currentStory++;
+
+    if(Stories._currentStory == Stories.#stories.length){
+      Stories._currentStory = 0;
+    }
+
+    InstaStoryGenerator.displayStory(Stories.#stories[Stories._currentStory], true);
+  }
+
+  static prev(){
+    Stories._currentStory--;
+    if(Stories._currentStory < 0){
+      Stories._currentStory = 0;
+    }
+    InstaStoryGenerator.displayStory(Stories.#stories[Stories._currentStory], true);
+  }
+
   static _nextStoryAvaiable(){
     Stories._currentStory++;
     if(Stories._currentStory < Stories.#stories.length){
@@ -65,7 +83,9 @@ export default class Stories{
     storyThumbnail.id = story.id;
   
     storyThumbnail.addEventListener('click', (event) => {
+
       const story = Stories.#getStory(event.target.id);
+      document.querySelectorAll('.next-btn').forEach((btn)=> btn.style.display = 'block');
       Stories.#setCurrentStory(event.target.id);
       InstaStoryGenerator.displayStory(story, false);
     });

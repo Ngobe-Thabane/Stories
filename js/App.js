@@ -1,4 +1,5 @@
 import ImageUploader from "./imageUploader.js";
+import Stories from "./Stories.js";
 
 
 let uploader = new ImageUploader();
@@ -9,6 +10,17 @@ const createStory = document.getElementById('create-story');
 const preview = document.getElementById('preview');
 const previewContainer = document.querySelector('.upload-container');
 const addMoreButton = document.getElementById('add-more-btn');
+const leftArrow = document.getElementById('left-arrow');
+const rightArrow = document.getElementById('right-arrow');
+
+
+leftArrow.addEventListener('click', ()=>{
+    Stories.prev();
+})
+
+rightArrow.addEventListener('click', ()=>{
+    Stories.next();
+})
 
 createStory.addEventListener('click', ()=>{
     uploader.saveStory();

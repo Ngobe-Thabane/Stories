@@ -78,3 +78,18 @@ body {
   align-items: start;
   margin: 2em;
 }
+.next-btn{
+  cursor: pointer;
+  background: transparent;
+  display: none;
+  border: none;
+}
+
+.caurosel{
+  display: flex;
+  align-items: center;
+  gap: .5em;
+}
+
+
+
