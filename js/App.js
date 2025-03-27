@@ -7,7 +7,6 @@ let uploader = new ImageUploader();
 const uploadBox = document.getElementById('upload-box');
 const fileInput = document.getElementById('file-input');
 const createStory = document.getElementById('create-story');
-const preview = document.getElementById('preview');
 const previewContainer = document.querySelector('.upload-container');
 const addMoreButton = document.getElementById('add-more-btn');
 const leftArrow = document.getElementById('left-arrow');
@@ -27,9 +26,6 @@ createStory.addEventListener('click', ()=>{
     uploader = new ImageUploader();
 })
 
-preview.addEventListener('click', ()=>{
-    uploader.previewStory();
-})
 
 uploadBox.addEventListener('dragover', (event) => {
     event.preventDefault();
@@ -53,6 +49,9 @@ addMoreButton.addEventListener('click', ()=>{
     fileInput.click();
     previewContainer.style.display = 'block';
     document.querySelector('.storie-card').style.display = 'none';
+    document.querySelectorAll('.next-btn').forEach((next)=>{
+        next.style.display = 'none';
+    })
 })
 
 uploadBox.addEventListener('click', () => {
@@ -60,7 +59,6 @@ uploadBox.addEventListener('click', () => {
 });
 
 
-// Handle files selected or dragged in
 fileInput.addEventListener('change', (event) => {
     const files = event.target.files;
     uploader.handleFiles(files);

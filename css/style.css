@@ -1,17 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 body {
   background: rgba(128, 128, 128, 0.219);
+  margin: 20px 200px;
+}
+
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slogen {
+  font-family: "Pacifico", cursive;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  gap: .5em;
 }
 
 .storie-card {
   display: none;
-  height: 85vh;
-  width: 35vw;
+  height: 500px;
+  width: 450px;
   margin: 0em auto;
   border-radius: 1em;
   background-color: rgb(245, 245, 245);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  box-shadow: -2px -2px gray;
 }
 
 .storie-list{
@@ -40,25 +62,25 @@ body {
   gap: .5em;
   border-radius: .5em;
   cursor: pointer;
-  border-bottom: 1px solid gray;
-  box-shadow: .5px 1px #A25AFF;
 }
 
 .action-elements {
   border-radius: 100%;
-  border: 2px solid #0095F6;
+  border: 1px solid #9B4DFF;
+  /* border-image: linear-gradient(#9B4DFF, #F58529) 1; */
 }
 
 .upload-btn {
-  display: none;
-  width: 50px;
-  height: 50px;
-  background: #A25AFF;
-  color: white;
-  font-size: 2em;
-  font-weight: 600;
+  color: black;
+  font-size: 1.5em;
   cursor: pointer;
+  border-radius: .4em;
+  border: 1px solid gray;
+  background: transparent;
+  padding: .2em .5em;
+
 }
+
 
 .pic {
   width: 50px;
@@ -73,7 +95,6 @@ body {
 }
 
 .story-container{
-  display: flex;
   justify-content: center;
   align-items: start;
   margin: 2em;
@@ -83,13 +104,23 @@ body {
   background: transparent;
   display: none;
   border: none;
-}
+} 
 
 .caurosel{
   display: flex;
   align-items: center;
-  gap: .5em;
+  justify-items: center;
+  justify-content: space-around;
 }
 
+.upload-container{
+  width: 70%;
+  margin: 1px auto;
+  background: rgba(255, 255, 255, 0.404);
+  border-radius: .5em;
+}
 
-
+.create{
+  margin: 0;
+  padding: 0;
+}

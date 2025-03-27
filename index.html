@@ -9,8 +9,21 @@
 </head>
 <body class="story-background">
 
+  <header>
+    <nav>
+      <div class="logo">
+        <img  src="./assets/icons8-instagram-48.png">
+        <span class="slogen">
+          InstagramStories
+        </span>
+      </div>
+      <button id="add-more-btn" class="action-elements upload-btn">
+        <img src="./assets/more.png" alt="">
+        <span>Create</span>
+      </button>
+    </nav>
+  </header>
   <article class="story-thumbnail">
-    <button class="action-elements upload-btn" id="add-more-btn">+</button>
     <section class="storie-list">
     </section>
   </article>
@@ -19,15 +32,14 @@
 
     <section class="">
      <div class="upload-container">
-        <h1>Share Your Moment, Inspire the World!</h1>
         <div class="upload-box" id="upload-box">
-            <span class="upload-text">Drag & Drop your files here or click to select</span>
+            <img src="./assets/icons8-image-100.png" alt="">
+            <span class="upload-text">Drag or click here to add photos</span>
             <input type="file" id="file-input" multiple style="display: none;">
         </div>
         <div id="file-preview" class="file-preview"></div>
         <div class="story-actions">
             <button class="instagram-button" id="create-story">Create Story</button>
-            <button class="instagram-button preview" id="preview">Preview Story</button>
         </div>
     </div> 
 
@@ -42,7 +54,6 @@
       <img src="./assets/right-arrow (1).png" alt="right-arrow">
     </button>
    </section> 
-
   </section>
   <script type="module" src="./js/App.js"></script>
 </body>

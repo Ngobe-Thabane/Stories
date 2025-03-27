@@ -1,10 +1,9 @@
 
 
-.upload-container h1{
-    color: #fcb045;
+.create{
     text-align: center;
+    font-size: 1.4em;
 }
-
 .upload-box {
 
     border: 2px dashed #ddd;
@@ -77,19 +76,19 @@
 
 /* Instagram Style Button */
 .instagram-button {
-    background: linear-gradient(45deg, #fd1d1d9d, #fcb045b6); /* Gradient from red to orange */
-    color: white;
-    border: none;
+    float: right;
+    color: black;
+    border: 1px solid gray;
     padding: 12px 25px;
     font-size: .8em;
     font-weight: bold;
-    border-radius: 30px; /* Rounded corners */
+    border-radius: 1em; /* Rounded corners */
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
     text-transform: uppercase;
 }
 
-.instagram-button:hover {
+.instagram-button:hover, .upload-btn:hover {
     background: linear-gradient(45deg, #fcb045, #fd1d1d); /* Invert the gradient on hover */
     transform: scale(1.05); /* Slightly grow the button */
 }
